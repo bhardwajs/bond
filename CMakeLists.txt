@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 3.5.1)
 
 project (bond)
 cmake_policy (SET CMP0022 NEW)
@@ -14,6 +14,13 @@ set (BOND_ENABLE_GRPC
 set (BOND_FIND_RAPIDJSON
     "FALSE"
     CACHE BOOL "If FALSE, then use and install rapidjson from thirdparty subdirectory")
+set (BOND_CXX_17
+    "FALSE"
+    CACHE BOOL "If TRUE, then use C++17 mode in compiler")
+
+if(BOND_CXX_17)
+    set(CMAKE_CXX_STANDARD 17)
+endif()
 # We need to include third-party CMake modules before we configure our own
 # settings so that we don't apply our settings to third-party code.
 add_subdirectory (thirdparty)
